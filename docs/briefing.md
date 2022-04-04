@@ -16,23 +16,12 @@ const fields: typedField[] = [
     type: FieldType.Group,
     fields: [
       {
-        type: FieldType.Group,
+        type: FieldType.Rating,
         columns: "2",
         phoneColumns: '12',
-        fields: [
-          {
-            type: FieldType.Component,
-            element: () => (
-              <div>Test</div>
-            )    
-          },
-          {
-            type: FieldType.Rating,
-            fieldBottomMargin: "0",
-            name: "rating",
-            defaultValue: 3
-          }
-        ]
+        fieldBottomMargin: "0",
+        name: "rating",
+        defaultValue: 3
       },
       {
         type: FieldType.Group,
