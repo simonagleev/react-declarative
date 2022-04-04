@@ -8,7 +8,67 @@
 
 ### 1. fields
 
-Основное, с чем приходится работать. Тут перечесляются поля, которые должны быть в форме. Задается через переменную `fields` (массив) c типом 'TypedField[]' и имеют следющие основные свойства:
+Основное, с чем приходится работать. Тут перечесляются поля, которые должны быть в форме. Задается через переменную `fields` (массив) c типом 'TypedField[]'. Пример:
+
+```tsx
+const fields: typedField[] = [
+{
+    type: FieldType.Group,
+    fields: [
+      {
+        type: FieldType.Group,
+        columns: "2",
+        phoneColumns: '12',
+        fields: [
+          {
+            type: FieldType.Component,
+            element: () => (
+              <div>Test</div>
+            )    
+          },
+          {
+            type: FieldType.Rating,
+            fieldBottomMargin: "0",
+            name: "rating",
+            defaultValue: 3
+          }
+        ]
+      },
+      {
+        type: FieldType.Group,
+        columns: "10",
+        phoneColumns: '12',
+        fields: [
+          {
+            name: 'lastName',
+            type: FieldType.Text,
+            title: 'Last name',
+            description: 'Required',
+          },
+          {
+            type: FieldType.Combo,
+            title: "Gender",
+            placeholder: "Choose your gender",
+            name: "gender",
+            itemList: [
+              "Male",
+              "Female",
+            ]
+          },
+        ]
+      }   
+    ]  
+}] 
+
+export const examplePage = () => (
+  <One
+    fields={fields}
+  /> 
+);
+```
+
+
+Имеются следющие основные свойства:
 
 **type** - задается тип поля. Например, `type: FieldType.Group`. Всего есть 22 типа полей.
 
