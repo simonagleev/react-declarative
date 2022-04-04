@@ -68,7 +68,7 @@
 
 ### 2. columns
 
-Отвечает за колонки списка. Это должен быть массив типа `IColumn[]`. Определяет тип, название и свойства колонки(например ширину). Освновные типы колонок: `ColumnType.Text`, `ColumnType.Compute`, `ColumnType.Component`, `ColumnType.CheckBox`, `ColumnType.Action` 
+Отвечает за колонки списка. Это должен быть массив типа `IColumn[]`. Определяет тип, название и свойства колонки(например ширину). Основные типы колонок: `ColumnType.Text`, `ColumnType.Compute`, `ColumnType.Component`, `ColumnType.CheckBox`, `ColumnType.Action` 
 
 ```tsx
 {
