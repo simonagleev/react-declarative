@@ -28,3 +28,19 @@ const borderWidth = 2
 </AutoSizer>
 ```
 , где borderWidth - ширина `border`.
+
+
+### keepFlow 
+
+Позволяет вылезти за границы контейнера. Т.е. по дефолту содержимое оборачивается в контейнер (
+
+```tsx
+  container: {
+    position: 'absolute',
+    minWidth: '100%',
+    minHeight: '100%',
+    top: 0,
+    left: 0,
+  }
+```
+), но если прописать свойство `<AutoSizer keepFlow>`, то этого не будет.
