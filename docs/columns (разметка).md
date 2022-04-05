@@ -50,4 +50,4 @@
 
 **phoneColumns** - используются для разметки на смартфоне;
 
-Можно настроить `mrgin` снизу и справа используя `fieldBottomMargin` и `fieldBottomMargin` соответственно.
+Можно настроить `margin` снизу и справа используя `fieldBottomMargin` и `fieldRightMargin` соответственно.
