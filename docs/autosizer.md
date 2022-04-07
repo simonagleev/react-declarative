@@ -44,33 +44,33 @@ export const HomePage = () => {
           }
       } = useTheme();
 
-      const renderContent = ({ width }: ISize) => {
-          if (width < sm) {
-              return (
-                  <MobileView/>
-              )
-          } else if (width < md && width > sm) {
-              return (
-                  <TabletView/>
-              )
-          } else {
-              return (
-                  <DesctopView/>
-              )
-          }
-      };
+  const renderContent = ({ width }: ISize) => {
+      if (width < sm) {
+          return (
+              <MobileView/>
+          )
+      } else if (width < md && width > sm) {
+          return (
+              <TabletView/>
+          )
+      } else {
+          return (
+              <DesctopView/>
+          )
+      }
+  };
 
-      return (
-          <div>
-              <NavBar/>
-              {/* Ниже запрашиваем ширину от контейнера и высоту от общего окна для Автосайзера, чтоб он считал от этих данных. Здесть мы это делаем, т.к. у нас нет родительского компонента с установленной шириной и высотой */}
-              <AutoSizer heightRequest={() => window.innerHeight - 80} target={document.body} selector='.MuiContainer-root'>
-                  {renderContent}
-              </AutoSizer>
-          </div>
-          
-      )
-  }
+  return (
+      <div>
+          <NavBar/>
+          {/* Ниже запрашиваем ширину от контейнера и высоту от общего окна для Автосайзера, чтоб он считал от этих данных. Здесть мы это делаем, т.к. у нас нет родительского компонента с установленной шириной и высотой */}
+          <AutoSizer heightRequest={() => window.innerHeight - 80} target={document.body} selector='.MuiContainer-root'>
+              {renderContent}
+          </AutoSizer>
+      </div>
+      
+  )
+}
 export default HomePage;
 ```
 Стандартно `Autosizer` растягитвается сверху вниз, но можно изменить направление на обратное путем добавления пропса `closest`. Например `closest='.MuiContainer-root'>`.
