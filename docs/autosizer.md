@@ -19,6 +19,64 @@
 
 Принимает в себя `height` и `width`, которые можно передать как пропсы дальше. ДОЛЖЕН иметь родительский компонент, в котором будут заданы размеры. Удобен при необходимости вставить изображене, видео, svg, `canvas`, и тп.
 
+>`Autosizer` мжет заменить медиазапорсы.
+
+Для этого понадобится хук `useTheme()`, например, из библиотеки Material UI. `breakpoints` - точки перехода размеров экрана. Например, стандартно `sm` = 600px (можно изменить). Затем устанавливам условия и для каждого условия возвращаем нужный нам компонент, который будет подходить для мобольной или десктопной версии и тп.  
+
+```tsx
+import { useTheme } from "@mui/material";
+import { AutoSizer } from "react-declarative";
+import ISize from "react-declarative/model/ISize";
+import NavBar from "../../components/navigation";
+import DesctopView from "./views/Desktop";
+import TabletView from "./views/TabletView";
+import MobileView from "./views/MobileView";
+
+export const HomePage = () => {
+  const {
+          breakpoints: {
+              values: {
+                  lg,
+                  md,
+                  sm,
+                  xl,
+                  xs,
+              }
+          }
+      } = useTheme();
+
+      const renderContent = ({ width }: ISize) => {
+          if (width < sm) {
+              return (
+                  <MobileView/>
+              )
+          } else if (width < md && width > sm) {
+              return (
+                  <TabletView/>
+              )
+          } else {
+              return (
+                  <DesctopView/>
+              )
+          }
+      };
+
+      return (
+          <div>
+              <NavBar/>
+              {/* Ниже запрашиваем ширину от контейнера и высоту от общего окна для Автосайзера, чтоб он считал от этих данных. Здесть мы это делаем, т.к. у нас нет родительского компонента с установленной шириной и высотой */}
+              <AutoSizer heightRequest={() => window.innerHeight - 80} target={document.body} selector='.MuiContainer-root'>
+                  {renderContent}
+              </AutoSizer>
+          </div>
+          
+      )
+  }
+export default HomePage;
+```
+Стандартно `Autosizer` растягитвается сверху вниз, но можно изменить направление на обратное путем добавления пропса `closest`. Например `closest='.MuiContainer-root'>`.
+
+
 Изначально подстраивает под размеры без учета `border`. Для того, чтобы содержимое отображалось внутри с учетом `border`, необходимо прописать:
 
 ```tsx
